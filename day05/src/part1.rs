@@ -33,7 +33,7 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
         })
         .collect();
 
-    info!("{:?}", rules);
+    // info!("{:?}", rules);
 
     let result: i32 = updates
         .par_iter()
