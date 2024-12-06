@@ -1,5 +1,6 @@
 #![allow(unused)]
 use itertools::Itertools;
+use rayon::iter::{IntoParallelRefIterator, ParallelIterator};
 use tracing::info;
 
 #[tracing::instrument(skip(input, test))]
@@ -33,7 +34,16 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
         .collect();
 
     info!("{:?}", rules);
-    let mut result: i32 = 0;
+
+    let result: i32 = updates
+        .par_iter()
+        .map(|u| middle_number(&rules, &u))
+        .sum::<i32>();
 
     Ok(result.to_string())
+}
+
+fn middle_number(rules: &Vec<(i32, i32)>, update: &Vec<i32>) -> i32 {
+    // if update correct return middle number else 0
+    0
 }
