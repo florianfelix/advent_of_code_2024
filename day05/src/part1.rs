@@ -33,6 +33,7 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
         .collect();
 
     info!("{:?}", rules);
+    let mut result: i32 = 0;
 
-    Ok("RESULT".into())
+    Ok(result.to_string())
 }
