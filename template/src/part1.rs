@@ -1,3 +1,4 @@
+#![allow(unused)]
 use tracing::info;
 
 #[tracing::instrument(skip(input))]
