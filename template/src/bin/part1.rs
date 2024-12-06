@@ -7,9 +7,10 @@ use tracing::{error, info};
 fn main() -> miette::Result<()> {
     {{crate_name}}::utils::trace();
 
-    let file = include_str!("../../input/part1test");
+    let file = include_str!("../../input/part1");
+    let testfile = include_str!("../../input/part1test");
 
-    let result = process(file);
+    let result = process(file, testfile);
 
     info!("{:?}", result);
 

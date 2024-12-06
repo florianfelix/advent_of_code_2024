@@ -1,14 +1,14 @@
 #![allow(unused)]
-use {{crate_name}}::part2::process;
+use day02::part1::process;
 use miette::Context;
 use tracing::{error, info};
 
 #[tracing::instrument]
 fn main() -> miette::Result<()> {
-    {{crate_name}}::utils::trace();
+    day02::utils::trace();
 
-    let file = include_str!("../../input/part2");
-    let testfile = include_str!("../../input/part2test");
+    let file = include_str!("../../input/part1");
+    let testfile = include_str!("../../input/part1test");
 
     let result = process(file, testfile);
 
