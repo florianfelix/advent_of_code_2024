@@ -26,17 +26,12 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
 
     info!("{:#?}", totest.first());
 
-    // let mut result: i32 = 0;
-
-    let result: i32 = totest
-        .par_iter()
-        .zip(numbers)
-        .map(|(t, n)| dotest(t, &n))
-        .sum();
+    let result: i32 = totest.iter().zip(numbers).map(|(t, n)| dotest(t, &n)).sum();
 
     Ok(result.to_string())
 }
 
 fn dotest(t: &i32, n: &Vec<i32>) -> i32 {
+    info!("Numbers: {:?}", n);
     t.to_owned()
 }
