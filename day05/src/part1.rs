@@ -6,7 +6,7 @@ use tracing::info;
 #[tracing::instrument(skip(input, test))]
 pub fn process(input: &str, test: &str) -> miette::Result<String> {
     info!("{} - PART 1", "day05".to_uppercase());
-    let lines: Vec<String> = test.lines().map(|s| s.to_owned()).collect();
+    let lines: Vec<String> = input.lines().map(|s| s.to_owned()).collect();
 
     let splitlines = lines.split(|l| l.is_empty()).collect_vec();
 
@@ -33,7 +33,7 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
         })
         .collect();
 
-    // info!("{:?}", rules);
+    // info!("{:?}", updates);
 
     let result: i32 = updates
         .par_iter()
@@ -44,6 +44,17 @@ pub fn process(input: &str, test: &str) -> miette::Result<String> {
 }
 
 fn middle_number(rules: &Vec<(i32, i32)>, update: &Vec<i32>) -> i32 {
-    // if update correct return middle number else 0
-    0
+    let mut middle: i32 = update.get((update.len() / 2)).unwrap().to_owned();
+
+    for r in rules {
+        if update.contains(&r.0) && update.contains(&r.1) {
+            let remaining = update.split(|n| n == &r.0).last().unwrap();
+            if !remaining.contains(&r.1) {
+                middle = 0;
+                break;
+            }
+        }
+    }
+
+    middle
 }
